@@ -1,4 +1,4 @@
-import * as fs from 'fs';
+import {fs} from 'fs';
 
 function findEmailsAndIPs(input: string): {emails: string[], ips: string[]} {
     const emailPattern = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b/g;
