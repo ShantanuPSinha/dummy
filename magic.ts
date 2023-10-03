@@ -1,19 +1,19 @@
 const fs = require('fs');
 
 function findEmailsAndIPs(input: string): {emails: string[], ips: string[]} {
-    // const emailPattern = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b/g;
-    // const ipPattern = /\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b/g;
+    const emailPattern = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b/g;
+    const ipPattern = /\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b/g;
 
     const emails: string[] = [];
     const ips: string[] = [];
 
     let match;
 
-    while ((match = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b/g.exec(input)) !== null) {
+    while ((match = emailPattern.exec(input)) !== null) {
         emails.push(match[0]);
     }
 
-    while ((match = /\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b/g.exec(input)) !== null) {
+    while ((match = ipPattern.exec(input)) !== null) {
         ips.push(match[0]);
     }
 
