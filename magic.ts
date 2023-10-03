@@ -1,19 +1,19 @@
-import {fs} from 'fs';
+const fs = require('fs');
 
 function findEmailsAndIPs(input: string): {emails: string[], ips: string[]} {
-    const emailPattern = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b/g;
-    const ipPattern = /\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b/g;
+    // const emailPattern = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b/g;
+    // const ipPattern = /\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b/g;
 
     const emails: string[] = [];
     const ips: string[] = [];
 
     let match;
 
-    while ((match = emailPattern.exec(input)) !== null) {
+    while ((match = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b/g.exec(input)) !== null) {
         emails.push(match[0]);
     }
 
-    while ((match = ipPattern.exec(input)) !== null) {
+    while ((match = /\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b/g.exec(input)) !== null) {
         ips.push(match[0]);
     }
 
@@ -31,7 +31,7 @@ output += '\n\nFound IPs:\n';
 output += result.ips.join('\n');
 
 // Write to a file
-fs.writeFile('extractedData.txt', output, (err) => {
+fs.writeFile('extractedData.txt', output, (err:any) => {
     if (err) throw err;
     console.log('Data has been written to extractedData.txt');
 });
